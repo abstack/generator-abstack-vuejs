@@ -1,0 +1,28 @@
+{
+  "name": "generator-abstack-vuejs",
+  "version": "0.1.0",
+  "description": "A yeoman generate with Vue.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PeachScript/generator-abstack-vuejs.git"
+  },
+  "files": [
+    "app"
+  ],
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "author": "Peach <scdzwyxst@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PeachScript/generator-abstack-vuejs/issues"
+  },
+  "homepage": "https://github.com/PeachScript/generator-abstack-vuejs#readme",
+  "dependencies": {
+    "yeoman-generator": "^0.22.6"
+  }
+}
