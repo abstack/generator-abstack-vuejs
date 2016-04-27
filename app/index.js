@@ -28,6 +28,7 @@ module.exports = generators.Base.extend({
     this._copy('_eslintrc.json', 'src/.eslintrc.json');
     this._copy('_editorconfig', '.editorconfig');
     this._copy('_gitignore', '.gitignore');
+    this._copy('_LICENSE', 'LICENSE');
     this._copy('_webpack.config.js', 'webpack.config.js');
     this._copyTpl('_index.html', 'index.html');
     this._copyTpl('_index.js', 'src/index.js');
