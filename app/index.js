@@ -1,5 +1,23 @@
 'use strict';
+
 var generators = require('yeoman-generator');
+var simpleFiles = {
+  '_babelrc': '.babelrc',
+  '_editorconfig': '.editorconfig',
+  '_gitignore': '.gitignore',
+  '_LICENSE': 'LICENSE',
+  '_webpack.config.js': 'webpack.config.js',
+  '_eslintrc.json': 'src/.eslintrc.json',
+  '_route.js': 'src/route.js',
+  '_Hello.vue': 'src/components/Hello.vue',
+  '_logo.png': 'src/assets/logo.png'
+};
+var tplFiles = {
+  '_index.html': 'index.html',
+  '_main.js': 'src/main.js',
+  '_App.vue': 'src/App.vue',
+  '_package.json': 'package.json'
+};
 
 module.exports = generators.Base.extend({
   prompting: function () {
@@ -24,19 +42,21 @@ module.exports = generators.Base.extend({
     }.bind(this));
   },
   writing: function () {
-    this._copy('_babelrc', '.babelrc');
-    this._copy('_editorconfig', '.editorconfig');
-    this._copy('_gitignore', '.gitignore');
-    this._copy('_LICENSE', 'LICENSE');
-    this._copy('_webpack.config.js', 'webpack.config.js');
-    this._copy('_eslintrc.json', 'src/.eslintrc.json');
-    this._copy('_logo.png', 'src/assets/logo.png');
-    this._copyTpl('_index.html', 'index.html');
-    this._copyTpl('_main.js', 'src/main.js');
-    this._copyTpl('_route.js', 'src/route.js');
-    this._copyTpl('_App.vue', 'src/App.vue');
-    this._copyTpl('_Hello.vue', 'src/components/Hello.vue');
-    this._copyTpl('_package.json', 'package.json');
+    var source;
+    var target;
+
+    for (source in simpleFiles) {
+      if (!this.extraConfig.isUseVueRouter && source == '_route.js') {
+        continue;
+      }
+      target = simpleFiles[source];
+      this._copy(source, target);
+    }
+
+    for (source in tplFiles) {
+      target = tplFiles[source];
+      this._copyTpl(source, target);
+    }
   },
   install: function () {
     this.npmInstall(undefined, {
