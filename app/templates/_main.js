@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import app from './App.vue';<% if (extraConfig.isUseVueRouter) { %>
+import app from './App';<% if (extraConfig.isUseVueRouter) { %>
 import VueRouter from 'vue-router';
 import { configRouter } from './route';<% } %>
 <% if (extraConfig.isUseVueRouter) { %>

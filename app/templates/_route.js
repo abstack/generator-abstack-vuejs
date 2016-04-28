@@ -1,5 +1,5 @@
 const components = {};
-components.Hello = require('./components/Hello.vue');
+components.Hello = require('./components/Hello');
 
 export function configRouter(router) {
   router.map({

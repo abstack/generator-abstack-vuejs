@@ -7,6 +7,9 @@ module.exports = {
     publicPath: 'dist/',
     filename: 'bundle.js'
   },
+  resolve: {
+    extensions: ['', '.js', '.vue']
+  },
   module: {
     loaders: [
       {
