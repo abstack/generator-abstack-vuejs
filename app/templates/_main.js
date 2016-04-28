@@ -1,13 +1,15 @@
 import Vue from 'vue';
-import app from './components/App.vue';<% if (extraConfig.isUseVueRouter) { %>
-import VueRouter from 'vue-router';<% } %>
+import app from './App.vue';<% if (extraConfig.isUseVueRouter) { %>
+import VueRouter from 'vue-router';
+import { configRouter } from './route';<% } %>
 <% if (extraConfig.isUseVueRouter) { %>
 Vue.use(VueRouter);
 
 const App = Vue.extend(app);
 const router = new VueRouter();
 
-router.start(App, 'body');
+configRouter(router);
+router.start(App, 'app');
 <% } else { %>
 const App = new Vue({
   el: 'body',

@@ -1,10 +1,10 @@
 var webpack = require('webpack');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/main.js',
   output: {
-    path: 'dist',
-    publicPath: 'dist',
+    path: './dist/',
+    publicPath: 'dist/',
     filename: 'bundle.js'
   },
   module: {
@@ -17,6 +17,13 @@ module.exports = {
         test: /\.js/,
         exclude: /node_modules|dist/,
         loader: 'babel'
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        loader: 'url',
+        query: {
+          limit: 10000
+        }
       }
     ]
   }

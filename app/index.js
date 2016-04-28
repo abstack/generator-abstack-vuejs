@@ -25,14 +25,17 @@ module.exports = generators.Base.extend({
   },
   writing: function () {
     this._copy('_babelrc', '.babelrc');
-    this._copy('_eslintrc.json', 'src/.eslintrc.json');
     this._copy('_editorconfig', '.editorconfig');
     this._copy('_gitignore', '.gitignore');
     this._copy('_LICENSE', 'LICENSE');
     this._copy('_webpack.config.js', 'webpack.config.js');
+    this._copy('_eslintrc.json', 'src/.eslintrc.json');
+    this._copy('_logo.png', 'src/assets/logo.png');
     this._copyTpl('_index.html', 'index.html');
-    this._copyTpl('_index.js', 'src/index.js');
-    this._copyTpl('_App.vue', 'src/components/App.vue');
+    this._copyTpl('_main.js', 'src/main.js');
+    this._copyTpl('_route.js', 'src/route.js');
+    this._copyTpl('_App.vue', 'src/App.vue');
+    this._copyTpl('_Hello.vue', 'src/components/Hello.vue');
     this._copyTpl('_package.json', 'package.json');
   },
   install: function () {
