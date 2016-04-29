@@ -61,6 +61,12 @@ if (process.env.NODE_ENV === 'production') {
     }),
     new webpack.optimize.OccurenceOrderPlugin()
   ];
+
+  module.exports.vue = {
+    autoprefixer: {
+      browsers: ['last 2 versions']
+    }
+  }
 } else {
   module.exports.devtool = '#source-map';
 }
