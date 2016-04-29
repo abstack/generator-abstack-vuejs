@@ -1,6 +1,6 @@
 {
   "name": "generator-abstack-vuejs",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A yeoman generate with Vue.js",
   "main": "index.js",
   "scripts": {
