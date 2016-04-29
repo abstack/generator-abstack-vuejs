@@ -4,7 +4,7 @@
   "description": "<%= appname %> project",
   "scripts": {
     "dev": "webpack-dev-server --inline --hot --quiet",
-    "build": "NODE_ENV=production webpack --progress --hide-modules"
+    "build": "rm -rf build/ && NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {<% if (extraConfig.isUseVueRouter) { %>
     "vue-router": "^0.7.13",<% } %>
