@@ -1,7 +1,7 @@
 {
   "name": "generator-abstack-vuejs",
   "version": "0.2.1",
-  "description": "A yeoman generate with Vue.js",
+  "description": "A yeoman generator for Vue.js",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
