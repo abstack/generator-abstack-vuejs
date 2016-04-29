@@ -41,14 +41,6 @@ module.exports = {
         loader: 'vue-html'
       },
       {
-        test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style!css')
-      },
-      {
-        test: /\.less$/,
-        loader: ExtractTextPlugin.extract('style!css!less')
-      },
-      {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url',
         query: {
@@ -72,6 +64,17 @@ module.exports = {
 if (process.env.NODE_ENV === 'production') {
   module.exports.output.filename = 'static/js/[name]_[chunkhash].js';
   module.exports.output.chunkFilename = "static/js/[id]_[chunkhash].js";
+
+  module.exports.module.loaders = module.exports.module.loaders.concat([
+    {
+      test: /\.css$/,
+      loader: ExtractTextPlugin.extract('style','css')
+    },
+    {
+      test: /\.less$/,
+      loader: ExtractTextPlugin.extract('style', 'css', 'less')
+    }
+  ]);
 
   module.exports.plugins = [
     new webpack.DefinePlugin({
@@ -108,6 +111,17 @@ if (process.env.NODE_ENV === 'production') {
 } else {
   // development configurations
   module.exports.output.filename = 'static/js/[name].js';
+
+  module.exports.module.loaders = module.exports.module.loaders.concat([
+    {
+      test: /\.css$/,
+      loader: 'style!css'
+    },
+    {
+      test: /\.less$/,
+      loader: 'style!css!less'
+    }
+  ]);
 
   module.exports.plugins = [
     new HtmlWepackPlugin({
