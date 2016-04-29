@@ -12,6 +12,13 @@ module.exports = {
     extensions: ['', '.js', '.vue']
   },
   module: {
+    preLoaders: [
+      {
+        test: /\.(vue|js)$/,
+        loader: 'eslint',
+        exclude: /node_modules/
+      }
+    ],
     loaders: [
       {
         test: /\.vue$/,
