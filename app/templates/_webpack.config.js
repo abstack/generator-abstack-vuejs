@@ -1,14 +1,15 @@
 var webpack = require('webpack');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWepackPlugin = require('html-webpack-plugin');
 
 // basic configurations
 module.exports = {
-  entry: './src/main.js',
+  entry: {
+    app: './src/main.js'
+  },
   output: {
     path: './dist',
-    publicPath: '/',
-    filename: 'static/js/bundle.js'
+    publicPath: '/'
   },
   resolve: {
     extensions: ['', '.js', '.vue']
@@ -54,21 +55,15 @@ module.exports = {
         }
       }
     ]
-  },
-  vue: {
-    loaders: {
-      css: ExtractTextPlugin.extract('css'),
-      less: ExtractTextPlugin.extract('css!less')
-    }
-  },
-  plugins: [
-    new ExtractTextPlugin("static/css/bundle.css")
-  ]
+  }
 };
 
 // production configurations
 if (process.env.NODE_ENV === 'production') {
-  module.exports.plugins = module.exports.plugins.concat([
+  module.exports.output.filename = 'static/js/[name]_[chunkhash].js';
+  module.exports.output.chunkFilename = "static/js/[id]_[chunkhash].js";
+
+  module.exports.plugins = [
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: '"production"'
@@ -87,22 +82,33 @@ if (process.env.NODE_ENV === 'production') {
         removeComments: true,
         collapseWhitespace: true
       }
-    })
-  ]);
+    }),
+    new ExtractTextPlugin('static/css/[name]_[contenthash].css')
+  ];
 
-  module.exports.vue.autoprefixer = {
-    browsers: ['last 2 versions']
-  }
+  module.exports.vue = {
+    autoprefixer: {
+      browsers: ['last 2 versions']
+    },
+    loaders: {
+      css: ExtractTextPlugin.extract('css'),
+      less: ExtractTextPlugin.extract('css!less')
+    }
+  };
 } else {
   // development configurations
-  module.exports.plugins = module.exports.plugins.concat([
+  module.exports.output.filename = 'static/js/[name].js';
+
+  module.exports.plugins = [
     new HtmlWepackPlugin({
       filename: 'index.html',
       template: 'index.html'
     })
-  ]);
+  ];
+
   module.exports.devServer = {
     contentBase: './dist'
   };
+
   module.exports.devtool = '#source-map';
 }
