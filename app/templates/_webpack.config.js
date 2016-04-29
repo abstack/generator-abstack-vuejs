@@ -1,4 +1,5 @@
 var webpack = require('webpack');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   entry: './src/main.js',
@@ -44,11 +45,20 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  vue: {
+    loaders: {
+      css: ExtractTextPlugin.extract('css'),
+      less: ExtractTextPlugin.extract('css!less')
+    }
+  },
+  plugins: [
+    new ExtractTextPlugin("bundle.css")
+  ]
 };
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports.plugins = [
+  module.exports.plugins = module.exports.plugins.concat([
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: '"production"'
@@ -60,12 +70,10 @@ if (process.env.NODE_ENV === 'production') {
       }
     }),
     new webpack.optimize.OccurenceOrderPlugin()
-  ];
+  ]);
 
-  module.exports.vue = {
-    autoprefixer: {
-      browsers: ['last 2 versions']
-    }
+  module.exports.vue.autoprefixer = {
+    browsers: ['last 2 versions']
   }
 } else {
   module.exports.devtool = '#source-map';
