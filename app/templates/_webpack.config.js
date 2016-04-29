@@ -1,12 +1,14 @@
 var webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var HtmlWepackPlugin = require('html-webpack-plugin');
 
+// basic configurations
 module.exports = {
   entry: './src/main.js',
   output: {
-    path: './dist/',
-    publicPath: 'dist/',
-    filename: 'bundle.js'
+    path: './dist',
+    publicPath: '/',
+    filename: 'static/js/bundle.js'
   },
   resolve: {
     extensions: ['', '.js', '.vue']
@@ -60,10 +62,11 @@ module.exports = {
     }
   },
   plugins: [
-    new ExtractTextPlugin("bundle.css")
+    new ExtractTextPlugin("static/css/bundle.css")
   ]
 };
 
+// production configurations
 if (process.env.NODE_ENV === 'production') {
   module.exports.plugins = module.exports.plugins.concat([
     new webpack.DefinePlugin({
@@ -76,12 +79,30 @@ if (process.env.NODE_ENV === 'production') {
         warnings: false
       }
     }),
-    new webpack.optimize.OccurenceOrderPlugin()
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new HtmlWepackPlugin({
+      filename: 'index.html',
+      template: 'index.html',
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true
+      }
+    })
   ]);
 
   module.exports.vue.autoprefixer = {
     browsers: ['last 2 versions']
   }
 } else {
+  // development configurations
+  module.exports.plugins = module.exports.plugins.concat([
+    new HtmlWepackPlugin({
+      filename: 'index.html',
+      template: 'index.html'
+    })
+  ]);
+  module.exports.devServer = {
+    contentBase: './dist'
+  };
   module.exports.devtool = '#source-map';
 }
