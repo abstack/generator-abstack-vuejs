@@ -27,12 +27,14 @@ yo abstack-vuejs
   - source-map support
 
 - Production
+  - npm script: `npm run build`
   - extract css into a single file
   - compress javascript
   - add CSS prefix automatic with autoprefixer
   - rename all static files with their content hash
 
 - Test
+  - npm script: `npm test`
   - unit test with [Karma](https://karma-runner.github.io), [Mocha](https://mochajs.org/), [Chai](http://chaijs.com/)
   - come soon...
 
