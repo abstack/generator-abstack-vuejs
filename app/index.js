@@ -10,7 +10,11 @@ var simpleFiles = {
   '_eslintrc.json': 'src/.eslintrc.json',
   '_route.js': 'src/route.js',
   '_Hello.vue': 'src/components/Hello.vue',
-  '_logo.png': 'src/assets/logo.png'
+  '_logo.png': 'src/assets/logo.png',
+  '_test.index.js': 'test/unit/index.js',
+  '_test.spec.Hello.js': 'test/unit/specs/Hello.spec.js',
+  '_test.eslintrc.json': 'test/unit/.eslintrc.json',
+  '_test.karma.conf.js': 'karma.conf.js'
 };
 var tplFiles = {
   '_index.html': 'index.html',
