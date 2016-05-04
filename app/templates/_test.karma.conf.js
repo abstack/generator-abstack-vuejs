@@ -1,6 +1,13 @@
 var webpackConfig = require('./webpack.config');
 delete webpackConfig.entry;
 
+// Add code coverage loader
+webpackConfig.vue = {
+  loaders: {
+    js: 'isparta'
+  }
+}
+
 // Karma configuration
 module.exports = function(config) {
   config.set({
@@ -22,7 +29,14 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    // reporters: ['progress'],
+    reporters: ['spec', 'coverage'],
+    coverageReporter: {
+      dir: './test/unit/coverage',
+      reporters: [
+        { type: 'lcov', subdir: '.' },
+        { type: 'text-summary' }
+      ]
+    },
     webpack: webpackConfig,
     webpackMiddleware: {
       noInfo: true
