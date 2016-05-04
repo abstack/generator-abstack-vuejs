@@ -18,7 +18,7 @@ npm install -g generator-abstack-vuejs
 yo abstack-vuejs
 ```
 
-## include
+## Include
 - Development
   - npm script: `npm run dev`
   - webpack-dev-server
@@ -36,6 +36,7 @@ yo abstack-vuejs
 - Test
   - npm script: `npm test`
   - unit test with [Karma](https://karma-runner.github.io), [Mocha](https://mochajs.org/), [Chai](http://chaijs.com/)
+  - unit test coverage reporter
   - come soon...
 
 ## Changelog
