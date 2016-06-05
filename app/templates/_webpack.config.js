@@ -72,7 +72,7 @@ if (process.env.NODE_ENV === 'production') {
     },
     {
       test: /\.less$/,
-      loader: ExtractTextPlugin.extract('style', 'css', 'less')
+      loader: ExtractTextPlugin.extract('style', 'css!less')
     }
   ]);
 
